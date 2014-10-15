@@ -3,7 +3,8 @@
     "main": "Gruntfile.js",
     "private": true,
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "postinstall": "./node_modules/bower/bin/bower install"
     },
     "license": "MIT",
     "devDependencies": {
