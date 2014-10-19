@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             },
 
             changables: {
-                files: ['src/**', 'test/**'],
+                files: ['src/**', 'test/**', 'demo/**/**'],
                 options: {
                     livereload: true
                 }
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     port: 3000,
-                    base: ['src', 'test', 'bower_components']
+                    base: ['.', 'demo', 'template', 'bower_components', 'src']
                 }
             }
         },

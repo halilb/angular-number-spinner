@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular Number Spinner Directive Demo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body ng-app="NumberSpinnerDemo">
+    <div ng-controller="DemoController">
+        <label for="number_spinner">Select a value:</label>
+        <input id="number_spinner" number-spinner max="maxValue" min="minValue" ng-model="currentNumber">
+    </div>
+
+    <script src="angular/angular.js"></script>
+    <script src="demo.js"></script>
+    <script src="js/number-spinner.directive.js"></script>
+    <script src="//localhost:35729/livereload.js"></script>
+</body>
+
+</html>

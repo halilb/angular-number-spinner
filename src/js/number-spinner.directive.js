@@ -7,7 +7,8 @@ angular.module('number-spinner', [])
         transclude: true,
         replace: true,
         scope: {
-
+            max: '=',
+            min: '='
         }
     };
 });
