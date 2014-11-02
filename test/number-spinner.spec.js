@@ -29,6 +29,13 @@ describe('Number Spinner Directive', function () {
             expect(element.find('input').val()).toBe('5');
         });
 
+        it('shall ignore non-numeric values', function () {
+            $scope.currentNumber = '12a';
+            $scope.$digest();
+
+            expect($scope.currentNumber).toEqual(12);
+        });
+
         it('shall not be greater than maxValue', function () {
             $scope.maxValue = 5;
             $scope.currentNumber = 7;

@@ -12,11 +12,17 @@ angular.module('number-spinner', [])
         },
         link: function (scope) {
             scope.$watch('bindModel', function (value) {
-                if (value > scope.max) {
-                    scope.bindModel = scope.max;
-                } else if (value < scope.min) {
-                    scope.bindModel = scope.min;
+                if (value && isNaN(value)) {
+                    value = parseInt(value.replace(/\D/g, ''), 10);
                 }
+
+                if (value > scope.max) {
+                    value = scope.max;
+                } else if (value < scope.min) {
+                    value = scope.min;
+                }
+
+                scope.bindModel = value;
             });
         }
     };
