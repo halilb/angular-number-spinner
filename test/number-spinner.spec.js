@@ -26,7 +26,7 @@ describe('Number Spinner Directive', function () {
             $scope.currentNumber = 5;
             $scope.$digest();
 
-            expect(element.find('input').val()).toBe("5");
+            expect(element.find('input').val()).toBe('5');
         });
 
         it('shall not be greater than maxValue', function () {
