@@ -4,11 +4,20 @@ angular.module('number-spinner', [])
     return {
         restrict: 'A',
         templateUrl: 'src/template/number-spinner.html',
-        transclude: true,
         replace: true,
         scope: {
+            bindModel: '=ngModel',
             max: '=',
             min: '='
+        },
+        link: function (scope) {
+            scope.$watch('bindModel', function (value) {
+                if (value > scope.max) {
+                    scope.bindModel = scope.max;
+                } else if (value < scope.min) {
+                    scope.bindModel = scope.min;
+                }
+            });
         }
     };
 });
