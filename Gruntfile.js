@@ -11,6 +11,10 @@ module.exports = function (grunt) {
             'src/js/number-spinner.directive.js'
         ],
 
+        testDependencies = [
+            'bower_components/jquery/dist/jquery.js'
+        ],
+
         testFiles = [
             'test/*.js'
         ],
@@ -54,10 +58,11 @@ module.exports = function (grunt) {
             unit: {
                 options: {
                     configFile: 'karma.conf.js',
-                    files: dependencies.concat(templates).concat(projectFiles).concat(testFiles),
+                    files: testDependencies.concat(dependencies).concat(templates)
+                        .concat(projectFiles).concat(testFiles),
                     preprocessors: {
                         'src/js/*.js': ['coverage'],
-                        "src/template/*.html": ["ng-html2js"]
+                        'src/template/*.html': ['ng-html2js']
                     }
                 }
             }

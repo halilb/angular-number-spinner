@@ -6,12 +6,12 @@ angular.module('number-spinner', [])
         templateUrl: 'src/template/number-spinner.html',
         replace: true,
         scope: {
-            bindModel: '=ngModel',
+            number: '=ngModel',
             max: '=',
             min: '='
         },
         link: function (scope) {
-            scope.$watch('bindModel', function (value) {
+            scope.$watch('number', function (value) {
                 if (value && isNaN(value)) {
                     value = parseInt(value.replace(/\D/g, ''), 10);
                 }
@@ -22,8 +22,20 @@ angular.module('number-spinner', [])
                     value = scope.min;
                 }
 
-                scope.bindModel = value;
+                scope.number = value;
             });
+
+            scope.increase = function () {
+                if (scope.number + 1 < scope.max) {
+                    scope.number += 1;
+                }
+            };
+
+            scope.decrease = function () {
+                if (scope.number - 1 > scope.min) {
+                    scope.number -= 1;
+                }
+            };
         }
     };
 });
