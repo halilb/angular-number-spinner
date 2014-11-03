@@ -1,6 +1,6 @@
 {
     "name": "number-spinner",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "authors": [{
         "name": "Halil Bilir",
         "email": "hbilir@gmail.com"
@@ -18,8 +18,8 @@
         "bower_components",
         "test",
         "src",
-				"demo",
-				"karma.conf.js",
+        "demo",
+        "karma.conf.js",
         "Gruntfile.js",
         "package.json"
     ],
