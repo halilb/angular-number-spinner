@@ -74,6 +74,31 @@ module.exports = function (grunt) {
                     'dist/ui-number-spinner.min.js': projectFiles
                 }
             }
+        },
+
+        concat: {
+            options: {
+                stripBanners: true,
+                banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+                    '<%= grunt.template.today("yyyy-mm-dd") %> */ \n',
+            },
+            dist: {
+                src: ['src/js/*.js'],
+                dest: 'dist/angular-number-directive.js',
+            }
+        },
+
+        html2js: {
+            dist: {
+                src: ['src/template/*.html'],
+                dest: 'src/js/templates.js'
+            }
+        },
+
+        clean: {
+            dist: {
+                src: ['src/js/templates.js']
+            }
         }
 
     });
@@ -83,10 +108,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('test', ['jshint', 'karma']);
 
     grunt.registerTask('build', ['uglify']);
+    grunt.registerTask('dist', ['html2js:dist', 'concat:dist', 'clean:dist']);
 
     grunt.registerTask('default', ['connect', 'watch']);
 };
