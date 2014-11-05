@@ -11,7 +11,9 @@
 <body ng-app="NumberSpinnerDemo">
     <div ng-controller="DemoController">
         <label>Select a value:</label>
-        <input number-spinner max="maxValue" min="minValue" ng-model="currentNumber" exceeded-max="maxExceeded(oldValue)">
+        <input number-spinner max="maxValue" min="minValue" ng-model="currentNumber" state-changed="stateChanged(state, oldValue)">
+        <span ng-show="numberTooBig">The number was too big</span>
+        <span ng-show="numberTooSmall">The number was too small</span>
     </div>
 
     <script src="angular/angular.js"></script>
