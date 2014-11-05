@@ -7,33 +7,60 @@ angular.module('number-spinner', [])
         replace: true,
         scope: {
             number: '=ngModel',
+            changed: '&ngChange',
             max: '=',
-            min: '='
+            min: '=',
+            exceededMax: '&'
         },
         link: function (scope) {
-            scope.$watch('number', function (value) {
-                if (value && isNaN(value)) {
-                    value = parseInt(value.replace(/\D/g, ''), 10);
-                }
+            if (!scope.max) {
+                scope.max = 99999;
+            }
 
-                if (value > scope.max) {
-                    value = scope.max;
-                } else if (value < scope.min) {
-                    value = scope.min;
-                }
+            if (!scope.min) {
+                scope.min = -99999;
+            }
 
-                scope.number = value;
+            function changeNumber(newValue) {
+                scope.number = newValue;
+                if (angular.isFunction(scope.changed)) {
+                    scope.changed();
+                }
+            }
+
+            function exceededMax(oldValue) {
+                if (angular.isFunction(scope.exceededMax)) {
+                    scope.exceededMax({
+                        oldValue: oldValue
+                    });
+                }
+            }
+
+            scope.$watch('number', function (newValue, oldValue) {
+                if (newValue) {
+                    if (typeof newValue === 'string') {
+                        newValue = parseInt(newValue.replace(/\D/g, ''), 10);
+                    }
+
+                    if (newValue <= scope.max && newValue >= scope.min) {
+                        changeNumber(newValue);
+                    } else {
+                        exceededMax(oldValue);
+                    }
+                }
             });
 
             scope.increase = function () {
-                if (scope.number + 1 < scope.max) {
-                    scope.number += 1;
+                if (scope.number <= scope.max) {
+                    changeNumber(scope.number + 1);
+                } else {
+                    exceededMax(scope.number);
                 }
             };
 
             scope.decrease = function () {
-                if (scope.number - 1 > scope.min) {
-                    scope.number -= 1;
+                if (scope.number - 1 >= scope.min) {
+                    changeNumber(scope.number - 1);
                 }
             };
         }
