@@ -4,7 +4,8 @@ describe('Number Spinner Directive', function () {
     var $compile, $scope, el, State;
 
     beforeEach(module('number-spinner'));
-    beforeEach(module('my.templates'));
+    beforeEach(module('number-spinner-template'));
+
     beforeEach(inject(function (_$compile_, _$rootScope_, _State_) {
         $compile = _$compile_;
         $scope = _$rootScope_;

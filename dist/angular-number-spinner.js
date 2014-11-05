@@ -1,3 +1,6 @@
+/*! angular-number-spinner - v0.1.3 - 2014-11-05 
+Source Code: https://github.com/halilb/angular-number-spinner */ 
+
 angular.module('number-spinner', ['number-spinner-template'])
 
 .constant('State', {
@@ -77,3 +80,21 @@ angular.module('number-spinner', ['number-spinner-template'])
         };
     }
 ]);
+angular.module('number-spinner-template', ['template/number-spinner.html']);
+
+angular.module("template/number-spinner.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("template/number-spinner.html",
+    "<span class=\"ui-spinner ui-widget ui-widget-content ui-corner-all\">\n" +
+    "  <input class=\"ui-spinner-input\" ng-model=\"number\">\n" +
+    "  <a href ng-click=\"increase()\" class=\"ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only\" tabindex=\"-1\" role=\"button\">\n" +
+    "    <span class=\"ui-button-text\">\n" +
+    "      <span class=\"ui-icon ui-icon-triangle-1-n\">▲</span>\n" +
+    "    </span>\n" +
+    "  </a>\n" +
+    "  <a ng-click=\"decrease()\" class=\"ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only\" tabindex=\"-1\" role=\"button\">\n" +
+    "    <span class=\"ui-button-text\">\n" +
+    "      <span class=\"ui-icon ui-icon-triangle-1-s\">▼</span>\n" +
+    "    </span>\n" +
+    "  </a>\n" +
+    "</span>");
+}]);

@@ -13,7 +13,7 @@ module.exports = function (config) {
         },
 
         ngHtml2JsPreprocessor: {
-            moduleName: "my.templates"
+            moduleName: "number-spinner-template"
         },
 
         port: 9876,

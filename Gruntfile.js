@@ -20,11 +20,11 @@ module.exports = function (grunt) {
         ],
 
         templates = [
-            'src/template/*.html'
+            'template/*.html'
         ];
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON('bower.json'),
 
         jshint: {
             files: projectFiles.concat(testFiles),
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                         .concat(projectFiles).concat(testFiles),
                     preprocessors: {
                         'src/js/*.js': ['coverage'],
-                        'src/template/*.html': ['ng-html2js']
+                        'template/*.html': ['ng-html2js']
                     }
                 }
             }
@@ -80,24 +80,29 @@ module.exports = function (grunt) {
             options: {
                 stripBanners: true,
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                    '<%= grunt.template.today("yyyy-mm-dd") %> */ \n',
+                    '<%= grunt.template.today("yyyy-mm-dd") %> \n' +
+                    'Source Code: https://github.com/halilb/angular-number-spinner */ \n\n'
             },
             dist: {
-                src: ['src/js/*.js'],
-                dest: 'dist/angular-number-directive.js',
+                src: ['src/js/*.js', 'template/templates.js'],
+                dest: 'dist/angular-number-spinner.js'
             }
         },
 
         html2js: {
             dist: {
-                src: ['src/template/*.html'],
-                dest: 'src/js/templates.js'
+                options: {
+                    base: '.',
+                    module: 'number-spinner-template'
+                },
+                src: ['template/*.html'],
+                dest: 'template/templates.js'
             }
         },
 
         clean: {
             dist: {
-                src: ['src/js/templates.js']
+                src: ['template/templates.js']
             }
         }
 

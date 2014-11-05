@@ -1,6 +1,6 @@
 {
-    "name": "number-spinner",
-    "version": "0.1.2",
+    "name": "angular-number-spinner",
+    "version": "0.1.3",
     "authors": [{
         "name": "Halil Bilir",
         "email": "hbilir@gmail.com"
